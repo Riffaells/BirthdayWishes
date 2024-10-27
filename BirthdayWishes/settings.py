@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
 )
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
@@ -21,6 +21,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
+
 
 ALLOWED_HOSTS = []
 
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 
+    'core.apps.CoreConfig',
+    'app.videos.apps.VideosConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'BirthdayWishes.urls'
@@ -120,7 +125,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'conf/locale'),
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 LANGUAGES = [
@@ -151,11 +156,22 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECURE_HSTS_SECONDS = 31536000  # 1 год (в секундах)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Если хотите включить HSTS для поддоменов
-SECURE_HSTS_PRELOAD = True  # Включить поддержку HSTS preload
+# SECURE_HSTS_SECONDS = 31536000  # 1 год (в секундах)
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Если хотите включить HSTS для поддоменов
+# SECURE_HSTS_PRELOAD = True  # Включить поддержку HSTS preload
 
 # SECURE_SSL_REDIRECT = True
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+
+
+SECURE_HSTS_SECONDS = 0  # Отключение HSTS для разработки
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
+# SECURE_SSL_REDIRECT = False
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
