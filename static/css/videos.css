@@ -1,67 +1,136 @@
-
 /*--------------------------------------------------------------
 # videos Section
 --------------------------------------------------------------*/
 .videos {
-  width: 100%;
-  min-height: 70vh;
-  position: relative;
-  padding: 180px 0 40px 0;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+    width: 100%;
+    /*min-height: 70vh;*/
+    position: relative;
+    padding: 180px 0 40px 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 .videos .videos-bg img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.9) blur(1px); /* Добавлено затемнение и легкое размытие */
+    opacity: 0.9; /* Легкая прозрачность для создания глубины */
 }
 
 
 .videos .container {
-  position: relative;
-  z-index: 3;
+    position: relative;
+    z-index: 3;
 }
 
 .videos h1 {
-  margin: 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
 }
 
 .videos h1 span {
-  color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .videos p {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  margin: 5px 0 30px 0;
-  font-size: 20px;
-  font-weight: 400;
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    margin: 5px 0 30px 0;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 @media (min-width: 768px) {
-  .videos .videos-img {
-    max-width: 600px;
-  }
+    .videos .videos-img {
+        max-width: 600px;
+    }
 }
 
 @media (max-width: 640px) {
-  .videos h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
+    .videos h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
 
-  .videos p {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
+    .videos p {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 30px;
+    }
 
+}
+
+/* Основные стили видео */
+#video-player {
+    width: 100%;
+    max-width: 100%;
+    min-height: 70vh;
+    /*max-height: 500px;*/
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    font-family: inherit !important;
+}
+
+/* Стили для кнопок переключения */
+.video-control-button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    opacity: 0.8;
+    z-index: 10;
+    top: 50%; /* Центрирование по вертикали на больших экранах */
+    transform: translateY(-50%);
+}
+
+.video-control-button:hover {
+    opacity: 1;
+}
+
+.video-control-button.left {
+    left: -20px; /* Уменьшенный отступ для больших экранов */
+}
+
+.video-control-button.right {
+    right: -20px; /* Уменьшенный отступ для больших экранов */
+}
+
+/* Центрирование control-bar */
+.vjs-control-bar {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0;
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+    /* Перемещаем кнопки выше видео */
+    .video-control-button {
+        top: 10px; /* Расположение кнопок над видео */
+        transform: none;
+    }
+
+    /* Уменьшаем отступы для кнопок слева и справа */
+    .video-control-button.left {
+        left: 10px; /* Отступ от левого края */
+    }
+
+    .video-control-button.right {
+        right: 10px; /* Отступ от правого края */
+    }
 }
