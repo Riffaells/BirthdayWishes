@@ -1,46 +1,42 @@
 {% load i18n %}
 {% load static %}
-
 <section id="videos" class="videos section">
     <div class="videos-bg">
-        <img src="{% static 'assets/img/videos-bg-light.webp' %}" alt="">
+        <img src="{% static 'img/bg.webp' %}" alt="">
     </div>
-    <div class="container text-center">
+    <div class="container text-center position-relative">
+        <div id="app" class="d-flex flex-column justify-content-center align-items-center position-relative">
 
-        <div class="section-title text-center mb-5">
-            <h2>{% trans 'Поздравительные Видео' %}</h2>
-            <p>{% trans 'Смотрите все лучшие поздравления для вашей сестры здесь' %}</p>
+            <!-- Видео плеер -->
+            <video
+                    id="video-player"
+                    class="vjs-theme-city video-js"
+                    playsinline
+                    controls
+                    preload="auto"
+                    v-bind:poster="videos.length > 0 ? videos[currentVideoIndex].poster : ''">
+                <source v-bind:src="videos.length > 0 ? videos[currentVideoIndex].file : ''" type="video/mp4"></source>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser
+                    that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                        video</a>
+                </p>
+            </video>
+
+            <!-- Кнопки переключения по бокам видео -->
+            <img
+                    src="{% static 'img/arrow-left.svg' %}"
+                    alt="Previous Video"
+                    class="video-control-button left"
+                    @click="prevVideo"
+            >
+            <img
+                    src="{% static 'img/arrow-right.svg' %}"
+                    alt="Next Video"
+                    class="video-control-button right"
+                    @click="nextVideo"
+            >
         </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="swiper-container-news swiper">
-                    <div class="swiper-wrapper">
-                        {% for video in videos %}
-                            <div class="swiper-slide">
-                                <div class="card video-card">
-                                    <video class="vjs-default-skin card-img-top" controls preload="auto">
-                                        <source src="{{ video.file.url }}" type="video/mp4">
-                                    </video>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ video.title }}</h5>
-                                        <p class="card-text">{{ video.description }}</p>
-                                        <p class="text-muted">{{ video.author }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!-- Кнопки навигации -->
-                <div class="swiper-button-prev">
-                    <img src="{% static 'img/arrow-left.svg' %}" alt="Previous Slide">
-                </div>
-                <div class="swiper-button-next">
-                    <img src="{% static 'img/arrow-right.svg' %}" alt="Next Slide">
-                </div>
-            </div>
-        </div>
-
     </div>
-</section><!-- /videos Section -->
+</section>

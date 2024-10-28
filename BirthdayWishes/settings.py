@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'core.apps.CoreConfig',
     'app.videos.apps.VideosConfig',
+    'app.api.apps.ApiConfig',
 
 ]
 
