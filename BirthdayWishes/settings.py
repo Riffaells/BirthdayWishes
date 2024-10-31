@@ -9,7 +9,6 @@ from django.conf import global_settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
@@ -22,9 +21,12 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    "*"
+]
+if DEBUG: ALLOWED_HOSTS += "0.0.0.0"  # Для всех IP-адресов (не для продакшн-среды)
 
 # Application definition
 
@@ -83,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BirthdayWishes.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -93,7 +94,6 @@ DATABASES = {
         'NAME': BASE_DIR / env('DATABASE_NAME'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -112,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -135,7 +134,6 @@ LANGUAGES = [
     ('kk', 'Қаз'),
 ]
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -150,7 +148,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -175,4 +172,3 @@ SECURE_HSTS_PRELOAD = False
 
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-

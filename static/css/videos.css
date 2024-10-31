@@ -5,7 +5,6 @@
     width: 100%;
     /*min-height: 70vh;*/
     position: relative;
-    padding: 180px 0 40px 0;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -72,7 +71,6 @@
     width: 100%;
     max-width: 100%;
     min-height: 70vh;
-    /*max-height: 500px;*/
     object-fit: cover;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
@@ -83,54 +81,93 @@
     font-family: inherit !important;
 }
 
-/* Стили для кнопок переключения */
+/* Основные стили для кнопок переключения с эффектом стекла */
 .video-control-button {
     position: absolute;
     width: 50px;
     height: 50px;
     cursor: pointer;
-    transition: opacity 0.3s;
-    opacity: 0.8;
-    z-index: 10;
-    top: 50%; /* Центрирование по вертикали на больших экранах */
+    top: 50%;
     transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0.8;
+    transition: opacity 0.3s, background-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон для эффекта стекла */
+    border-radius: 50%; /* Закругленные края */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Тень */
+    backdrop-filter: blur(8px); /* Эффект размытия фона */
+    padding: 8px; /* Внутренние отступы */
 }
 
 .video-control-button:hover {
     opacity: 1;
+    background-color: rgba(255, 255, 255, 0.3); /* Более насыщенный цвет при наведении */
 }
 
+/* Расположение для левой кнопки */
 .video-control-button.left {
-    left: -20px; /* Уменьшенный отступ для больших экранов */
+    left: -20px; /* Отступ для больших экранов */
 }
 
+/* Расположение для правой кнопки */
 .video-control-button.right {
-    right: -20px; /* Уменьшенный отступ для больших экранов */
+    right: -20px; /* Отступ для больших экранов */
+}
+
+/* Центрирование заголовка видео */
+.videos h2 {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 1;
 }
 
 /* Центрирование control-bar */
 .vjs-control-bar {
-    width: 100% !important;
     display: flex;
     justify-content: center;
     position: relative;
-    left: 0;
+    left: 5px;
+    background: none !important;
 }
 
 /* Мобильные стили */
 @media (max-width: 768px) {
-    /* Перемещаем кнопки выше видео */
+    /* Расположение кнопок над видео */
     .video-control-button {
-        top: 10px; /* Расположение кнопок над видео */
+        top: 10px;
         transform: none;
     }
 
-    /* Уменьшаем отступы для кнопок слева и справа */
+    /* Отступы для кнопок слева и справа */
     .video-control-button.left {
-        left: 10px; /* Отступ от левого края */
+        left: 10px;
     }
 
     .video-control-button.right {
-        right: 10px; /* Отступ от правого края */
+        right: 10px;
+    }
+
+    /* Центрирование заголовка на мобильных */
+    .videos h2 {
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        justify-content: center;
     }
 }
+
+
+.vjs-remaining-time-display {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+

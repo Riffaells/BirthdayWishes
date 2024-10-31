@@ -34,18 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     // Настраиваем события для двойного нажатия
-                    player.on('dblclick', function (event) {
+                    player.on('dblclick', (event) => {
                         event.preventDefault();
                         const boundingRect = player.el().getBoundingClientRect();
                         const clickPosition = event.clientX - boundingRect.left;
                         const playerWidth = boundingRect.width;
 
                         if (clickPosition > playerWidth * 0.33 && clickPosition < playerWidth * 0.66) {
-                            if (player.isFullscreen()) {
-                                player.exitFullscreen();
-                            } else {
-                                player.requestFullscreen();
-                            }
+                            player.isFullscreen() ? player.exitFullscreen() : player.requestFullscreen();
                         } else if (clickPosition > playerWidth / 2) {
                             player.currentTime(player.currentTime() + 5);
                         } else {
@@ -53,15 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
 
+                    // Настройка Control Bar
                     let controlBar = player.getChild('ControlBar');
                     if (controlBar) {
-                        player.on('userinactive', function () {
-                            controlBar.addClass('fade-out');
-                        });
-
-                        player.on('useractive', function () {
-                            controlBar.removeClass('fade-out');
-                        });
+                        player.on('userinactive', () => controlBar.addClass('fade-out'));
+                        player.on('useractive', () => controlBar.removeClass('fade-out'));
                     }
 
                     this.loadVideo(this.currentVideoIndex);
@@ -84,10 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     }
 
-                    // player.one('loadedmetadata', () => {
-                    //     this.updatePlayerSize();
-                    //     this.resizeControlBar();
-                    // });
+                    player.play(); // Автоматически запускаем новое видео
                 }
             },
             updatePlayerSize() {
@@ -97,14 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 player.height(videoHeight);
             },
             resizeControlBar() {
-                // Подстраиваем ширину и выравниваем control-bar
                 const controlBar = player.el().querySelector('.vjs-control-bar');
                 const playerContainer = player.el();
 
                 if (controlBar && playerContainer) {
                     const videoWidth = player.videoWidth();
-                    controlBar.style.width = videoWidth + 'px';
-                    controlBar.style.margin = '0 auto'; // Центрируем control-bar
+                    controlBar.style.width = `${videoWidth}px`;
+                    controlBar.style.margin = '0 auto';
                     controlBar.style.left = '0';
                     controlBar.style.right = '0';
                 }

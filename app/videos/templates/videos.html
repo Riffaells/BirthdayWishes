@@ -7,6 +7,10 @@
     <div class="container text-center position-relative">
         <div id="app" class="d-flex flex-column justify-content-center align-items-center position-relative">
 
+            {% verbatim %}
+            <h2 v-if="videos.length > 0">{{ videos[currentVideoIndex].title }}</h2>
+
+            {% endverbatim %}
             <!-- Видео плеер -->
             <video
                     id="video-player"
@@ -22,8 +26,16 @@
                     <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
                         video</a>
                 </p>
-            </video>
 
+
+            </video>
+            {% verbatim %}
+            <!-- Заголовок, описание и автор видео -->
+            <div class="video-info">
+                <p v-if="videos.length > 0"><strong>{{ videos[currentVideoIndex].author }}</strong> - {{ videos[currentVideoIndex].wish_message }} </p>
+            </div>
+
+            {% endverbatim %}
             <!-- Кнопки переключения по бокам видео -->
             <img
                     src="{% static 'img/arrow-left.svg' %}"
@@ -37,6 +49,7 @@
                     class="video-control-button right"
                     @click="nextVideo"
             >
+
         </div>
     </div>
 </section>
