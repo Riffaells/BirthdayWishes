@@ -1,55 +1,21 @@
 {% load i18n %}
 {% load static %}
-<section id="videos" class="videos section">
-    <div class="videos-bg">
-        <img src="{% static 'img/bg.webp' %}" alt="">
-    </div>
-    <div class="container text-center position-relative">
-        <div id="app" class="d-flex flex-column justify-content-center align-items-center position-relative">
-
-            {% verbatim %}
-            <h2 v-if="videos.length > 0">{{ videos[currentVideoIndex].title }}</h2>
-
-            {% endverbatim %}
-            <!-- Видео плеер -->
-            <video
-                    id="video-player"
-                    class="vjs-theme-city video-js"
-                    playsinline
-                    controls
-                    preload="auto"
-                    v-bind:poster="videos.length > 0 ? videos[currentVideoIndex].poster : ''">
-                <source v-bind:src="videos.length > 0 ? videos[currentVideoIndex].file : ''" type="video/mp4"></source>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser
-                    that
-                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
-                        video</a>
-                </p>
-
-
-            </video>
-            {% verbatim %}
-            <!-- Заголовок, описание и автор видео -->
-            <div class="video-info">
-                <p v-if="videos.length > 0"><strong>{{ videos[currentVideoIndex].author }}</strong> - {{ videos[currentVideoIndex].wish_message }} </p>
+<section id="wishes" class="wishes section">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+                <div class="col-lg-6" v-for="(video, index) in videos" :key="video.id" data-aos="zoom-in" :data-aos-delay="(index + 1) * 100">
+                    <div class="wish-item position-relative">
+                        <div class="img">
+                            <img :src="video.poster || '{% static 'img/logo.png' %}'" class="img-fluid" alt="">
+                        </div>
+                        <div class="details">
+                            <a :href="'wish-details.html?id=' + video.id" class="stretched-link">
+                                <h3>{{ video.author }}</h3>
+                            </a>
+                            <p>{{ video.message }}</p>
+                        </div>
+                    </div>
+                </div><!-- End wish Item -->
             </div>
-
-            {% endverbatim %}
-            <!-- Кнопки переключения по бокам видео -->
-            <img
-                    src="{% static 'img/arrow-left.svg' %}"
-                    alt="Previous Video"
-                    class="video-control-button left"
-                    @click="prevVideo"
-            >
-            <img
-                    src="{% static 'img/arrow-right.svg' %}"
-                    alt="Next Video"
-                    class="video-control-button right"
-                    @click="nextVideo"
-            >
-
         </div>
-    </div>
-</section>
+    </section><!-- /wishes Section -->

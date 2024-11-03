@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             },
                             nativeAudioTracks: false,
                             nativeVideoTracks: false
-                        }
+                        },
+                        playbackRates: [0.25, 0.5, 1, 1.5, 1.75, 2, 2.5, 3]
+
                     });
 
                     // Настраиваем события для двойного нажатия

@@ -625,7 +625,7 @@
     background-color: var(--accent-color);
     width: 44px;
     height: 44px;
-    border-radius: 50px;
+    border-radius: 20px;
     transition: all 0.4s;
 }
 

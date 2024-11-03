@@ -75,3 +75,7 @@ class VideoModel(models.Model):
 
     def __str__(self):
         return f"{self.title} от {self.author}"
+
+    class Meta:
+        verbose_name = _("video")
+        verbose_name_plural = _("videos")

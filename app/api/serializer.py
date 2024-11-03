@@ -7,3 +7,4 @@ class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoModel
         fields = '__all__'
+        read_only = True

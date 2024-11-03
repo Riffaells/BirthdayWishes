@@ -1,0 +1,54 @@
+.wish-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.wishes .img {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.wishes .img img {
+    transition: 0.6s;
+}
+
+.wishes .details {
+    background: color-mix(in srgb, var(--surface-color), transparent 5%);
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 30px; /* Подняли выше для предотвращения наложения */
+    padding: 30px;
+    transition: all ease-in-out 0.3s;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
+}
+
+.wishes .details h3 {
+    font-weight: 700;
+    margin: 10px 0 15px 0;
+    font-size: 22px;
+    transition: ease-in-out 0.3s;
+}
+
+.wishes .details p {
+    color: color-mix(in srgb, var(--default-color), transparent 10%);
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.wishes .wish-item:hover .details h3 {
+    color: var(--accent-color);
+}
+
+.wishes .wish-item:hover .img img {
+    transform: scale(1.2);
+}
+
+@media (max-width: 767px) {
+    .col-lg-6 {
+        width: 100%; /* Один элемент в строке на малых экранах */
+    }
+}
