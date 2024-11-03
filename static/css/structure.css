@@ -75,31 +75,27 @@
 
 
 
-
-
-
-
-
-
-
-
-
-.header .btn-getstarted:hover,
-.header .btn-getstarted:focus:hover {
-    color: var(--contrast-color);
-    background: color-mix(in srgb, var(--accent-color), transparent 15%);
+.header li a {
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Pacifico', cursive;
 }
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 1200px) {
     .header .logo {
         order: 1;
     }
 
-    .header .btn-getstarted {
-        order: 2;
-        margin: 0 15px 0 0;
-        padding: 6px 15px;
-    }
+
 
     .header .navmenu {
         order: 3;

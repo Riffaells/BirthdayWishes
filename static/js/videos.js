@@ -29,32 +29,58 @@ document.addEventListener('DOMContentLoaded', function () {
                         aspectRatio: '16:9',
                         preload: 'auto',
                         userActions: {
-                            doubleClick: false
+                            doubleClick: false,
+                            click: true,
+                            tap: true
+                        },
+                        html5: {
+                            vhs: {
+                                overrideNative: true
+                            },
+                            nativeAudioTracks: false,
+                            nativeVideoTracks: false
                         }
                     });
 
                     // Настраиваем события для двойного нажатия
                     player.on('dblclick', (event) => {
-                        event.preventDefault();
                         const boundingRect = player.el().getBoundingClientRect();
                         const clickPosition = event.clientX - boundingRect.left;
                         const playerWidth = boundingRect.width;
 
-                        if (clickPosition > playerWidth * 0.33 && clickPosition < playerWidth * 0.66) {
-                            player.isFullscreen() ? player.exitFullscreen() : player.requestFullscreen();
-                        } else if (clickPosition > playerWidth / 2) {
-                            player.currentTime(player.currentTime() + 5);
+                        if (clickPosition > playerWidth / 2) {
+                            player.currentTime(player.currentTime() + 10);
                         } else {
-                            player.currentTime(player.currentTime() - 5);
+                            player.currentTime(player.currentTime() - 10);
                         }
                     });
 
+                    let lastTapTime = 0;
+                    player.on('touchend', (event) => {
+                        const currentTime = new Date().getTime();
+                        const tapLength = currentTime - lastTapTime;
+                        if (tapLength < 300 && tapLength > 0) {
+                            // Обработка двойного касания
+                            const boundingRect = player.el().getBoundingClientRect();
+                            const touch = event.changedTouches[0];
+                            const touchPosition = touch.clientX - boundingRect.left;
+                            const playerWidth = boundingRect.width;
+
+                            if (touchPosition > playerWidth / 2) {
+                                player.currentTime(player.currentTime() + 10);
+                            } else {
+                                player.currentTime(player.currentTime() - 10);
+                            }
+                        }
+                        lastTapTime = currentTime;
+                    });
+
                     // Настройка Control Bar
-                    let controlBar = player.getChild('ControlBar');
-                    if (controlBar) {
-                        player.on('userinactive', () => controlBar.addClass('fade-out'));
-                        player.on('useractive', () => controlBar.removeClass('fade-out'));
-                    }
+                    // let controlBar = player.getChild('ControlBar');
+                    // if (controlBar) {
+                    //     player.on('userinactive', () => controlBar.addClass('fade-out'));
+                    //     player.on('useractive', () => controlBar.removeClass('fade-out'));
+                    // }
 
                     this.loadVideo(this.currentVideoIndex);
                 }
@@ -62,10 +88,13 @@ document.addEventListener('DOMContentLoaded', function () {
             loadVideo(index) {
                 if (index >= 0 && index < this.videos.length) {
                     this.currentVideoIndex = index;
-                    const videoSrc = this.videos[index].file;
+                    const videoSrc = this.videos[index].hls_playlist;
 
-                    player.src({src: videoSrc, type: 'video/mp4'});
 
+                    player.src({
+                        src: videoSrc,
+                        type: 'application/x-mpegURL'
+                    });
                     if (this.videos[index].poster) {
                         player.poster(this.videos[index].poster);
                     } else {
@@ -76,27 +105,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     }
 
-                    player.play(); // Автоматически запускаем новое видео
+                    // player.play(); // Автоматически запускаем новое видео
+                    player.play().catch(function (error) {
+                        console.error('Error attempting to play:', error);
+                    });
                 }
             },
-            updatePlayerSize() {
-                const videoWidth = player.videoWidth();
-                const videoHeight = player.videoHeight();
-                player.width(videoWidth);
-                player.height(videoHeight);
-            },
-            resizeControlBar() {
-                const controlBar = player.el().querySelector('.vjs-control-bar');
-                const playerContainer = player.el();
 
-                if (controlBar && playerContainer) {
-                    const videoWidth = player.videoWidth();
-                    controlBar.style.width = `${videoWidth}px`;
-                    controlBar.style.margin = '0 auto';
-                    controlBar.style.left = '0';
-                    controlBar.style.right = '0';
-                }
-            },
             generatePoster(index, time) {
                 player.currentTime(time);
 

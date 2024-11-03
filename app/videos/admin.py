@@ -15,7 +15,6 @@ class EventsAdmin(ModelAdmin):
     list_filter = ('created_at', 'updated_at')
     ordering = ('-created_at',)
 
-
     fieldsets = (
         (None, {
             'fields': (
@@ -23,6 +22,7 @@ class EventsAdmin(ModelAdmin):
                 'author',
                 'wish_message',
                 'file',
+                'hls_playlist',
             ),
             'description': _("detailed-information-about-the-video"),
         }),
@@ -38,8 +38,3 @@ class EventsAdmin(ModelAdmin):
     readonly_fields = ('id', 'created_at', 'updated_at')
     verbose_name = _("video")
     verbose_name_plural = _("videos")
-
-
-
-
-

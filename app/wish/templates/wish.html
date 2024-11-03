@@ -14,13 +14,12 @@
             <!-- Видео плеер -->
             <video
                     id="video-player"
-                    class="video-js  "
+                    class="vjs-theme-city video-js"
                     playsinline
                     controls
                     preload="auto"
-                    v-bind:poster="videos.length > 0 ? videos[currentVideoIndex].poster : ''"
-            >
-                <source v-bind:src="videos.length > 0 ? videos[currentVideoIndex].file : ''"></source>
+                    v-bind:poster="videos.length > 0 ? videos[currentVideoIndex].poster : ''">
+                <source v-bind:src="videos.length > 0 ? videos[currentVideoIndex].file : ''" type="video/mp4"></source>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser
                     that

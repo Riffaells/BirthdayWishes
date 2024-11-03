@@ -131,10 +131,6 @@
 
 /* Центрирование control-bar */
 .vjs-control-bar {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    left: 5px;
     background: none !important;
 }
 
@@ -171,3 +167,15 @@
     font-size: 1.2em;
 }
 
+
+.vjs-theme-city .vjs-progress-control .vjs-progress-holder {
+    height: 5px;
+}
+.video-control-button {
+    z-index: 10; /* Adjust as necessary */
+}
+
+/* Control bar should be above other elements */
+.vjs-control-bar {
+    z-index: 20;
+}
