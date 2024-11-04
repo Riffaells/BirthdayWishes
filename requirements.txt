@@ -1,2 +1,4 @@
-Django>=5
+Django
 django-unfold
+django-environ
+autoslug
