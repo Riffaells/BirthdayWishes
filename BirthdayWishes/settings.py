@@ -154,12 +154,12 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECURE_HSTS_SECONDS = 31536000  # 1 год (в секундах)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Если хотите включить HSTS для поддоменов
-SECURE_HSTS_PRELOAD = True  # Включить поддержку HSTS preload
-
-# SECURE_SSL_REDIRECT = True
-
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_SECONDS = 31536000  # 1 год (в секундах)
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Если хотите включить HSTS для поддоменов
+# SECURE_HSTS_PRELOAD = True  # Включить поддержку HSTS preload
+#
+# # SECURE_SSL_REDIRECT = True
+#
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 

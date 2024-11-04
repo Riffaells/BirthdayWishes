@@ -6,10 +6,18 @@
 .wishes .img {
     border-radius: 8px;
     overflow: hidden;;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.1),  /* Темный фон с большей непрозрачностью */
+            rgba(0, 0, 0, 0.1)
+        ),color-mix(in srgb, var(--surface-color), transparent 70%);
+    backdrop-filter: blur(40px);  /* Меньший эффект размытия для баланса */
 }
 
 .wishes .img img {
     transition: 0.6s;
+    min-height: 500px;
+    object-fit: contain;
 }
 
 .wishes .details {

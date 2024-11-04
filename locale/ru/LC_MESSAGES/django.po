@@ -61,6 +61,10 @@ msgid "wishes"
 msgstr "Пожелания"
 
 
+msgid "designed-by"
+msgstr "Разработал"
+
+
 
 
 

@@ -37,16 +37,22 @@ class VideoModel(models.Model):
     )
 
     def save(self, *args, **kwargs):
+        # Флаг для проверки, является ли файл новым
+        is_new_file = True
 
+        # Проверка, существует ли объект в базе данных (если он уже сохранён)
         if self.pk:
-            old_instance = VideoModel.objects.get(pk=self.pk)
-            is_new_file = old_instance.file != self.file
-        else:
-            is_new_file = True
+            try:
+                old_instance = VideoModel.objects.get(pk=self.pk)
+                is_new_file = old_instance.file != self.file  # Сравнение файла только если объект существует
+            except VideoModel.DoesNotExist:
+                # Объект новый, установка is_new_file как True
+                is_new_file = True
 
-
+        # Вызов метода super() для сохранения объекта
         super().save(*args, **kwargs)
 
+        # Выполнение дополнительной логики после сохранения
         if is_new_file:
             self.convert_to_hls()
 

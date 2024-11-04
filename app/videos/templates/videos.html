@@ -38,7 +38,13 @@
 
                 {% endverbatim %}
 
-
+                <a v-if="videos.length > 0" :href="videos[currentVideoIndex].file" target="_blank"  class="download-link">
+                    <img
+                            src="{% static 'img/download.svg' %}"
+                            alt="Previous Video"
+                            class="video-control-button download"
+                    >
+                </a>
             </div>
 
             <!-- Кнопки переключения по бокам видео -->
