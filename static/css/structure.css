@@ -20,29 +20,23 @@
 
 
 
-
-
-
-
-
 .header .logo h1 {
-    font-size: 2em; /* Размер текста */
+    font-size: 2em;
     font-weight: bold;
-    color: #FF69B4; /* Основной цвет текста */
-    background: linear-gradient(90deg, var(--rainbow-colors)); /* Радужный градиент с использованием переменной */
-    background-size: 200%; /* Увеличенный размер градиента для уменьшения слияния цветов */
+    color: #FF69B4;
+    background: linear-gradient(90deg, var(--rainbow-colors));
+    background-size: 200%;
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Прозрачный текст для отображения градиента */
+    -webkit-text-fill-color: transparent;
     text-align: center;
     padding: 10px;
     margin: 0;
-    animation: rainbow-text 5s linear infinite alternate; /* Анимация радужного текста с увеличенной длительностью и плавным обратным переходом */
-    font-family: 'Pacifico', cursive; /* Стильный шрифт */
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Легкая тень для глубины */
+    animation: rainbow-text 5s linear infinite alternate;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Анимация для радужного текста */
 @keyframes rainbow-text {
     0% {
         background-position: 0% 50%;
@@ -52,16 +46,14 @@
     }
 }
 
-/* Добавляем плавное сияние */
 .header .logo h1::after {
-    content: "🎉"; /* Эмодзи-конфетти для праздника */
+    content: "🎉";
     font-size: 1em;
     position: relative;
     margin-left: 10px;
     animation: sparkle 2s ease-in-out infinite;
 }
 
-/* Анимация для конфетти */
 @keyframes sparkle {
     0%, 100% {
         opacity: 0.5;
@@ -103,7 +95,7 @@
 }
 
 .scrolled .header {
-    box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
 }
 
 /* Index Page Header
@@ -606,7 +598,7 @@
 
 .scroll-top.active {
     visibility: visible;
-    opacity: 1;
+    opacity: 0.7;
     bottom: 15px;
 }
 
@@ -615,7 +607,7 @@
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
     [data-aos-delay] {
-        transition-delay: 0 !important;
+        transition-delay: 0s !important;
     }
 }
 

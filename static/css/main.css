@@ -5,7 +5,6 @@
     --nav-font: "Inter", sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
     --background-color: #ffffff;
     --default-color: #ffffff;
@@ -18,10 +17,9 @@
 
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-    --nav-color: #6b5da8; /* The default color of the main navmenu links */
-    --nav-hover-color: #462fa9; /* Applied to main navmenu links when they are hovered over or active */
+    --nav-color: #6b5da8;
+    --nav-hover-color: #462fa9;
     --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
     --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
     --nav-dropdown-color: #313336; /* Used for navigation links of the dropdown items in the navigation menu. */
