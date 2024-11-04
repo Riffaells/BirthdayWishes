@@ -1,4 +1,5 @@
 Django
 django-unfold
 django-environ
-autoslug
+djangorestframework
+django-cors-headers
