@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.videos = data;
                     this.$nextTick(() => {
                         this.initializePlayer();
+                        this.generateAllPosters();
                     });
                 })
                 .catch(error => console.error('Error fetching videos:', error));
@@ -114,23 +115,56 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-            generatePoster(index, time) {
-                player.currentTime(time);
+            generateAllPosters() {
+                // Для каждого видео запускаем генерацию постера
+                this.videos.forEach((video, index) => {
+                    this.generatePosterForVideo(video, index);
+                });
+            },
+            generatePosterForVideo(video, index) {
+                // Создаем экземпляр Video.js для каждого видео
+                const videoElement = document.createElement('video');
+                videoElement.setAttribute('id', `video-${index}`);
+                document.body.appendChild(videoElement);  // Временно добавляем видео на страницу
 
-                player.one('seeked', () => {
+                const player = videojs(videoElement, {
+                    controls: false,
+                    autoplay: false,
+                    preload: 'auto',
+                    fluid: false,
+                    muted: true,
+                    sources: [{src: video.hls_playlist, type: 'application/x-mpegURL'}]
+                });
+
+                // Ждем загрузки метаданных
+                player.on('loadedmetadata', () => {
+                    const duration = player.duration();
+                    const randomTime = Math.random() * duration;
+                    player.currentTime(randomTime);
+                });
+
+                // Когда видео достигло случайного кадра, создаем постер
+                player.on('seeked', () => {
                     const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-
                     canvas.width = player.videoWidth();
                     canvas.height = player.videoHeight();
 
+                    const context = canvas.getContext('2d');
                     context.drawImage(player.el().querySelector('video'), 0, 0, canvas.width, canvas.height);
 
-                    const dataUrl = canvas.toDataURL('image/jpeg');
-                    this.videos[index].poster = dataUrl;
-                    player.poster(dataUrl);
+                    const dataURL = canvas.toDataURL('image/jpeg');
+                    this.videos[index].poster = dataURL; // Присваиваем сгенерированный постер видео
 
-                    player.currentTime(0);
+                    // Очищаем ресурсы
+                    player.dispose();
+                    videoElement.remove();
+                });
+
+                // Обрабатываем ошибки при загрузке видео
+                player.on('error', (e) => {
+                    console.error('Ошибка при загрузке видео:', e);
+                    player.dispose();
+                    videoElement.remove();
                 });
             },
             nextVideo() {

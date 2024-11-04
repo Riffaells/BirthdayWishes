@@ -150,8 +150,6 @@
         color: var(--nav-color);
         padding: 18px 15px;
         font-size: 16px;
-        font-family: var(--nav-font), serif;
-        font-weight: 400;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -190,7 +188,7 @@
         transition: 0.3s;
         border-radius: 4px;
         z-index: 99;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     }
 
     .navmenu .dropdown ul li {
@@ -241,7 +239,7 @@
         margin: 0;
         padding: 10px;
         background: var(--nav-dropdown-background-color);
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         position: absolute;
         top: 130%;
         left: 0;

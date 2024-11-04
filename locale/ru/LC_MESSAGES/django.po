@@ -54,6 +54,12 @@ msgstr "Видео"
 msgid "videos"
 msgstr "Видео"
 
+msgid "wish"
+msgstr "Пожелание"
+
+msgid "wishes"
+msgstr "Пожелания"
+
 
 
 

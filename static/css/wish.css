@@ -5,7 +5,7 @@
 
 .wishes .img {
     border-radius: 8px;
-    overflow: hidden;
+    overflow: hidden;;
 }
 
 .wishes .img img {
@@ -13,23 +13,30 @@
 }
 
 .wishes .details {
-    background: color-mix(in srgb, var(--surface-color), transparent 5%);
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.3),  /* Темный фон с большей непрозрачностью */
+            rgba(0, 0, 0, 0.1)
+        ),
+        color-mix(in srgb, var(--surface-color), transparent 70%);
+    backdrop-filter: blur(40px);  /* Меньший эффект размытия для баланса */
+    border: 1px solid rgba(255, 255, 255, 0.4);
     position: absolute;
     left: 20px;
     right: 20px;
-    bottom: 30px; /* Подняли выше для предотвращения наложения */
-    padding: 30px;
+    bottom: 20px;
+    padding: 10px;
     transition: all ease-in-out 0.3s;
     text-align: center;
-    border-radius: 8px;
-    box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
 }
-
 .wishes .details h3 {
     font-weight: 700;
     margin: 10px 0 15px 0;
     font-size: 22px;
     transition: ease-in-out 0.3s;
+    color: var(--default-color)
 }
 
 .wishes .details p {
@@ -40,7 +47,7 @@
 }
 
 .wishes .wish-item:hover .details h3 {
-    color: var(--accent-color);
+    color: var(--accent-hover-color);
 }
 
 .wishes .wish-item:hover .img img {
