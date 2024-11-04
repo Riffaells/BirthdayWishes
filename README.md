@@ -1,110 +1,117 @@
-
 # 🎉 BirthdayWishes 🎉
 
-BirthdayWishes — веб-приложение для отправки и просмотра персонализированных видеопоздравлений на день рождения. Проект позволяет загрузить видео-поздравления от разных знакомых, а пользователи могут просматривать их с возможностью переключения между видео.
+BirthdayWishes is a web application for sending and viewing personalized birthday video greetings. The project allows users to upload birthday greeting videos from different friends, and the birthday person can view them with the option to switch between videos.
+
+[Русский](README_RU.md) | **English**
 
 ![preview](assets/preview.gif)
 
+## 📋 Description
 
-## 📋 Описание
+BirthdayWishes is designed to gather all birthday greetings in one place, providing a simple and convenient interface for viewing them. Users can watch videos, skip to specific parts, and switch between greetings using navigation buttons.
 
-BirthdayWishes создан для того, чтобы объединить все видео-поздравления с днем рождения в одном месте, предоставляя простой и удобный интерфейс для их просмотра. Пользователи могут смотреть видео, перематывать на нужное место, а также переключаться между поздравлениями с помощью кнопок навигации.
-
-## 🚀 Технологии
+## 🚀 Technologies
 
 - **Backend**: Django
 - **Frontend**: Vue.js, Video.js, Bootstrap
-- **База данных**: SQLite
-- **Прочие библиотеки**: FFmpeg для обработки видеофайлов в потоковую передачу
+- **Database**: SQLite
+- **Other libraries**: FFmpeg for streaming video processing
 
-## 📂 Структура проекта
+## 📂 Project Structure
 
 ```plaintext
 BirthdayWishes/
-├── app/                # Django приложения
-│   ├── api/            # api для videos
-│   ├── videos          # Модель видео
-│   └── wish            # Обдумывание
-├── BirthdayWishes      # Настройки Django и база проекта
-├── media/              # Хранение загруженных видео
-│   ├── hsl/            # Конвертированные видео для потоковой передачи
-│   └── videos/         # Иходные видео. Лучше всего загружать видео в mp4
-├── core                # Гланое приложение
-├── locale              # Переводы
-├── static/             # Статические файлы (CSS, JS)
+├── app/                # Django applications
+│   ├── api/            # API for videos
+│   ├── videos          # Video model
+│   └── wish            # ? Under consideration
+├── BirthdayWishes      # Django settings
+├── media/              # Uploaded video storage
+│   ├── hsl/            # Converted videos for streaming
+│   └── videos/         # Original videos, recommended to upload in mp4 format
+├── core                # Main application
+├── locale              # Translations
+├── static/             # Static files (CSS, JS)
 │   ├── css/
 │   ├── img/
 │   └── js/
-└── README.md           # Документация проекта
+└── README.md           # Project documentation
 ```
 
-## 📦 Установка и настройка
+## 📦 Installation and Setup
 
-### Требования
+### Requirements
 
 - Python 
-- FFmpeg (для конвертации и обработки видео)
+- FFmpeg (for video conversion and processing)
 
-### Установка
+### Installation
 
-1. **Склонируйте репозиторий и перейдите в директорию проекта**:
+1. **Clone the repository and navigate to the project directory**:
 
  ```bash
- git clone https://github.com/yourusername/BirthdayWishes.git
+ git clone https://github.com/Riffaells/BirthdayWishes.git
  cd BirthdayWishes
  ```
 
-2. **Создайте виртуальное окружение и активируйте его**:
+2. **Create and activate a virtual environment**:
 
  ```bash
  python -m venv venv
- source venv/bin/activate  # Для Linux/macOS  # Для Windows venv\Scripts\activate
+ source venv/bin/activate  # For Linux/macOS  # For Windows venv\Scripts\activate
  ```
 
-3. **Установите зависимости проекта**:
+3. **Install project dependencies**:
 
  ```bash
  pip install -r requirements.txt
  ```
 
-4. **Настройте базу данных и миграции**:
+4. **Set up the database and run migrations**:
 
  ```bash
  python manage.py makemigrations
  python manage.py migrate
  ```
 
-5. **Соберите статические файлы**:
+5. **Create a superuser**: 
+```bash
+python manage.py createsuperuser 
+```
+
+6. **Collect static files**:
 
  ```bash
  python manage.py collectstatic
  ```
 
-6. **Запустите сервер разработки**:
+7. **Start the development server**:
 
  ```bash
  python manage.py runserver
  ```
 
-7. **Откройте приложение в браузере**: 
+ ```bash
+ python manage.py runserver 0.0.0.0:8000 # If deploying locally
+ ```
 
- Перейдите по адресу [http://localhost:8000](http://localhost:8000) для доступа к приложению.
+8. **Open the application in a browser**:
+
+ Go to [http://localhost:8000](http://localhost:8000) to access the application.
 
 ### FFmpeg
 
-Убедитесь, что FFmpeg установлен на вашем устройстве и доступен в PATH. Вы можете проверить его установку, запустив команду:
+Ensure that FFmpeg is installed on your device and available in **PATH**. You can check its installation by running:
 
 ```bash
 ffmpeg -version
 ```
 
+## 📖 API Endpoints
 
+- **GET /api/videos/**: Returns a list of all videos in JSON format.
 
-## 📖 API эндпоинты
-
-- **GET /api/videos/**: Возвращает список всех видео в формате JSON.
-
-### Пример ответа JSON для `/api/videos/`
+### Sample JSON Response for `/api/videos/`
 
 ```json
 [
@@ -113,23 +120,20 @@ ffmpeg -version
         "title": "Happy Birthday from John",
         "file": "/media/videos/uuid-12345.m3u8",
         "author": "John",
-        "wish_message": "С днем рождения! Желаю тебе всего самого лучшего!",
+        "wish_message": "Happy Birthday! Wishing you all the best!",
         "created_at": "2024-11-03T10:15:30Z"
     }
 ]
 ```
 
-## 📚 Полезные команды
+## 📚 Useful Commands
 
-- **Запуск сервера разработки**: `python manage.py runserver`
-- **Миграция базы данных**: `python manage.py migrate`
-- **Создание суперпользователя**: `python manage.py createsuperuser`
+- **Start development server**: `python manage.py runserver`
+- **Database migration**: `python manage.py migrate`
+- **Create superuser**: `python manage.py createsuperuser`
 
-## 📄 Лицензия
+## 📄 License
 
-Этот проект распространяется под лицензией MIT. Подробнее см. файл [LICENSE](LICENSE).
+This project is distributed under the MIT license. See the [LICENSE](LICENSE) file for more information.
 
-
-
-🎂 **Наслаждайтесь использованием BirthdayWishes! Пусть каждый день рождения будет наполнен теплыми поздравлениями и радостью!** 🎂
-```
+🎂 **Enjoy using BirthdayWishes! May each birthday be filled with warm wishes and joy!** 🎂
