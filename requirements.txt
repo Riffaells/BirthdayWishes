@@ -1,2 +1,3 @@
-django
+Django>=5
 django-unfold
+django-background-tasks

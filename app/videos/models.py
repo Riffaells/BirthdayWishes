@@ -37,8 +37,18 @@ class VideoModel(models.Model):
     )
 
     def save(self, *args, **kwargs):
+
+        if self.pk:
+            old_instance = VideoModel.objects.get(pk=self.pk)
+            is_new_file = old_instance.file != self.file
+        else:
+            is_new_file = True
+
+
         super().save(*args, **kwargs)
-        self.convert_to_hls()
+
+        if is_new_file:
+            self.convert_to_hls()
 
     def convert_to_hls(self):
         input_file = self.file.path

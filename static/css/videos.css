@@ -41,7 +41,7 @@
 
 .videos p {
     color: color-mix(in srgb, var(--default-color), transparent 30%);
-    margin: 5px 0 30px 0;
+    margin: 5px 25px 30px 0;
     font-size: 20px;
     font-weight: 400;
 }
@@ -70,22 +70,24 @@
     color: var(--accent-color);
 }
 
-.video-info {
-    background: linear-gradient(
-            rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)
-    ), color-mix(in srgb, var(--surface-color), transparent 70%);
+.videos .video-info {
+    display: flex;  /* Используем flexbox для горизонтального выравнивания */
+    align-items: center;  /* Центрируем текст и кнопку по вертикали */
+    justify-content: space-between;  /* Разделяем текст и кнопку по краям */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                color-mix(in srgb, var(--surface-color), transparent 70%);
     backdrop-filter: blur(40px); /* Меньший эффект размытия для баланса */
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px 30px;
     transition: all ease-in-out 0.3s;
-    text-align: center;
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-    margin: 5px;
+    /*margin: 5px;*/
+    position: relative; /* Относительное позиционирование для дочерних элементов */
 }
 
 /* Основные стили видео */
-#video-player {
+.videos #video-player {
     width: 100%;
     max-width: 100%;
     min-height: 70vh;
@@ -130,6 +132,20 @@
 /* Расположение для правой кнопки */
 .video-control-button.right {
     right: -20px; /* Отступ для больших экранов */
+}
+
+.video-control-button.download {
+    width: 40px;  /* Размер кнопки */
+    height: 40px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s, background-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон для эффекта стекла */
+    border-radius: 50%; /* Закругленные края */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Тень */
+    backdrop-filter: blur(8px); /* Эффект размытия фона */
+    padding: 8px;
+    right: 10px;
 }
 
 /* Центрирование заголовка видео */
@@ -185,10 +201,6 @@
     font-size: 1.2em;
 }
 
-
-.vjs-theme-city .vjs-progress-control .vjs-progress-holder {
-    height: 5px;
-}
 
 .video-control-button {
     z-index: 10; /* Adjust as necessary */

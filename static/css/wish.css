@@ -50,6 +50,7 @@
 
 .wishes .wish-item:hover .img img {
     transform: scale(1.2);
+
 }
 
 @media (max-width: 767px) {

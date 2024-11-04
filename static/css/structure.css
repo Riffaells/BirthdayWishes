@@ -3,7 +3,7 @@
 --------------------------------------------------------------*/
 .header {
     color: var(--default-color);
-    background-color: var(--background-color);
+    /*background-color: var(--background-color);*/
     transition: all 0.5s;
     z-index: 997;
 }
@@ -74,14 +74,6 @@
 }
 
 
-
-
-
-
-
-
-
-
 @media (max-width: 1200px) {
     .header .logo {
         order: 1;
@@ -98,17 +90,11 @@
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
 }
 
-/* Index Page Header
-------------------------------*/
-.index-page .header {
-    --background-color: rgba(255, 255, 255, 0);
-}
 
 /* Index Page Header on Scroll
 ------------------------------*/
 .index-page.scrolled .header {
     object-fit: cover;
-    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(150px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

@@ -5,7 +5,7 @@
         <img src="{% static 'img/bg.webp' %}" alt="">
     </div>
     <div class="container text-center position-relative">
-        <div  class="d-flex flex-column justify-content-center align-items-center position-relative">
+        <div class="d-flex flex-column justify-content-center align-items-center position-relative">
 
             {% verbatim %}
             <h2 v-if="videos.length > 0">{{ videos[currentVideoIndex].title }}</h2>
@@ -30,13 +30,17 @@
 
 
             </video>
-            {% verbatim %}
             <!-- Заголовок, описание и автор видео -->
             <div class="video-info">
-                <p v-if="videos.length > 0"><strong>{{ videos[currentVideoIndex].author }}</strong> - {{ videos[currentVideoIndex].wish_message }} </p>
+                {% verbatim %}
+                <p v-if="videos.length > 0"><strong>{{ videos[currentVideoIndex].author }}</strong> - {{
+                    videos[currentVideoIndex].wish_message }} </p>
+
+                {% endverbatim %}
+
+
             </div>
 
-            {% endverbatim %}
             <!-- Кнопки переключения по бокам видео -->
             <img
                     src="{% static 'img/arrow-left.svg' %}"
