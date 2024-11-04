@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'autoslug',
     'rest_framework',
     'corsheaders',
-    'background_task',
 
     'app.api.apps.ApiConfig',
     'core.apps.CoreConfig',
